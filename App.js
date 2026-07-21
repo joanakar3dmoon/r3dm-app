@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { StatusBar, View, StyleSheet } from 'react-native';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -10,17 +10,6 @@ import HomeScreen from './src/screens/HomeScreen';
 import MemberScreen from './src/screens/MemberScreen';
 import TutorialesScreen from './src/screens/TutorialesScreen';
 import DonarScreen from './src/screens/DonarScreen';
-
-// AdMob Banner (cargado dinámicamente para evitar crash en Expo Go)
-let BannerAd, BannerAdSize, TestIds;
-try {
-  const ads = require('react-native-google-mobile-ads');
-  BannerAd = ads.BannerAd;
-  BannerAdSize = ads.BannerAdSize;
-  TestIds = ads.TestIds;
-} catch (e) {
-  BannerAd = null;
-}
 
 const Tab = createBottomTabNavigator();
 
@@ -39,47 +28,29 @@ const darkTheme = {
 
 const ICONS = { Inicio: '🏠', Membresía: '🎵', Tutoriales: '🤖', Donar: '💜' };
 
-const ADMOB_BANNER = __DEV__
-  ? 'ca-app-pub-3940256099942544/6300978111'   // test
-  : 'ca-app-pub-4903263409458961/6771307929';   // producción (r3dm/guia)
-
 export default function App() {
   return (
     <SafeAreaProvider>
       <NavigationContainer theme={darkTheme}>
         <StatusBar barStyle="light-content" backgroundColor="#0a0a1a" />
         <View style={styles.container}>
-          {/* AdMob Banner superior */}
-          {BannerAd && (
-            <View style={styles.adContainer}>
-              <BannerAd
-                unitId={ADMOB_BANNER}
-                size={BannerAdSize.BANNER}
-                requestOptions={{ requestNonPersonalizedAdsOnly: false }}
-                onAdFailedToLoad={(err) => console.warn('Ad error:', err.code)}
-              />
-            </View>
-          )}
-
-          <View style={styles.navContainer}>
-            <Tab.Navigator
-              screenOptions={({ route }) => ({
-                tabBarIcon: ({ focused }) => (
-                  <Text style={{ fontSize: focused ? 22 : 18 }}>{ICONS[route.name]}</Text>
-                ),
-                tabBarActiveTintColor: '#a78bfa',
-                tabBarInactiveTintColor: '#374151',
-                tabBarStyle: styles.tabBar,
-                tabBarLabelStyle: styles.tabLabel,
-                headerShown: false,
-              })}
-            >
-              <Tab.Screen name="Inicio" component={HomeScreen} />
-              <Tab.Screen name="Membresía" component={MemberScreen} />
-              <Tab.Screen name="Tutoriales" component={TutorialesScreen} />
-              <Tab.Screen name="Donar" component={DonarScreen} />
-            </Tab.Navigator>
-          </View>
+          <Tab.Navigator
+            screenOptions={({ route }) => ({
+              tabBarIcon: ({ focused }) => (
+                <Text style={{ fontSize: focused ? 22 : 18 }}>{ICONS[route.name]}</Text>
+              ),
+              tabBarActiveTintColor: '#a78bfa',
+              tabBarInactiveTintColor: '#374151',
+              tabBarStyle: styles.tabBar,
+              tabBarLabelStyle: styles.tabLabel,
+              headerShown: false,
+            })}
+          >
+            <Tab.Screen name="Inicio" component={HomeScreen} />
+            <Tab.Screen name="Membresía" component={MemberScreen} />
+            <Tab.Screen name="Tutoriales" component={TutorialesScreen} />
+            <Tab.Screen name="Donar" component={DonarScreen} />
+          </Tab.Navigator>
         </View>
       </NavigationContainer>
     </SafeAreaProvider>
@@ -88,14 +59,6 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#0a0a1a' },
-  adContainer: {
-    alignItems: 'center',
-    backgroundColor: '#0d0d20',
-    paddingVertical: 4,
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(139,92,246,0.1)',
-  },
-  navContainer: { flex: 1 },
   tabBar: {
     backgroundColor: '#0d0d20',
     borderTopWidth: 1,
