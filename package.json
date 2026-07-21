@@ -19,10 +19,10 @@
     "react-native-screens": "3.31.1",
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/bottom-tabs": "^6.5.20",
-    "react-native-google-mobile-ads": "^13.6.0",
     "@supabase/supabase-js": "^2.43.5",
     "expo-font": "~12.0.9",
-    "expo-splash-screen": "~0.27.5"
+    "expo-splash-screen": "~0.27.5",
+    "react-native-google-mobile-ads": "^13.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.24.0"
