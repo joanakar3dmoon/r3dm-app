@@ -23,14 +23,6 @@
         "projectId": "6a63d0ea-6602-4dc1-aac5-d60173c71538"
       }
     },
-    "owner": "r3dm",
-    "plugins": [
-      [
-        "react-native-google-mobile-ads",
-        {
-          "androidAppId": "ca-app-pub-4903263409458961~2391607033"
-        }
-      ]
-    ]
+    "owner": "r3dm"
   }
 }
