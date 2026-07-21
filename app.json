@@ -16,9 +16,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#0a0a1a"
       },
-      "package": "com.r3dm.community",
-      "googleServicesFile": "./google-services.json",
-      "permissions": ["android.permission.INTERNET"]
+      "package": "com.r3dm.community"
     },
     "plugins": [
       [
@@ -30,8 +28,9 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "r3dm-community-001"
+        "projectId": "6a63d0ea-6602-4dc1-aac5-d60173c71538"
       }
-    }
+    },
+    "owner": "r3dm"
   }
 }
