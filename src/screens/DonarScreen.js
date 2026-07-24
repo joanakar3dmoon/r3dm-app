@@ -4,6 +4,7 @@ import {
   StyleSheet, Alert, Linking, ActivityIndicator
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { AdBanner } from '../lib/admob';
 
 const SUPA_URL = 'https://tolzqxflecqbjdefohom.supabase.co';
 const SUPA_KEY = 'sb_publishable_aDlGZIIVARlRrtmednmZug_LffD21aU';
@@ -135,6 +136,7 @@ export default function DonarScreen() {
         </Text>
         <Text style={styles.infoQuote}>"El talento te abre las puertas, la humildad las mantiene abiertas"</Text>
       </View>
+      <View style={{padding: 16}}><AdBanner /></View>
     </ScrollView>
   );
 }
