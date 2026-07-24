@@ -4,7 +4,8 @@ import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Text } from 'react-native';
-import { mobileAds } from 'react-native-google-mobile-ads';
+// import { mobileAds } from 'react-native-google-mobile-ads';
+const mobileAds = () => ({ initialize: () => {} });
 
 // Screens
 import HomeScreen from './src/screens/HomeScreen';
