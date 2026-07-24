@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StatusBar, View, StyleSheet } from 'react-native';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Text } from 'react-native';
+import { mobileAds } from 'react-native-google-mobile-ads';
 
 // Screens
 import HomeScreen from './src/screens/HomeScreen';
@@ -29,6 +30,10 @@ const darkTheme = {
 const ICONS = { Inicio: '🏠', Membresía: '🎵', Tutoriales: '🤖', Donar: '💜' };
 
 export default function App() {
+  useEffect(() => {
+    mobileAds().initialize();
+  }, []);
+
   return (
     <SafeAreaProvider>
       <NavigationContainer theme={darkTheme}>
