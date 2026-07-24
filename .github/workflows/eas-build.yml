@@ -17,12 +17,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+        env:
+          ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: "true"
 
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
       - name: Setup Expo & EAS
-        run: npm install -g eas-cli@latest
+        run: npm install -g eas-cli@7.8.0
 
       - name: Build APK (preview)
         env:
