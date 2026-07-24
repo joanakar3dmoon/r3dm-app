@@ -1,5 +1,6 @@
 // AdMob para r3dm community
-const { Platform } = require('react-native');
+import React from 'react';
+import { Platform } from 'react-native';
 
 let BannerAd, BannerAdSize, TestIds, InterstitialAd, AdEventType;
 
@@ -11,14 +12,14 @@ try {
   InterstitialAd = mod.InterstitialAd;
   AdEventType = mod.AdEventType;
 } catch (e) {
-  BannerAd = function() { return null; };
+  BannerAd = function(props) { return null; };
   BannerAdSize = { ANCHORED_ADAPTIVE_BANNER: 'ANCHORED_ADAPTIVE_BANNER' };
   TestIds = { BANNER: 'test', INTERSTITIAL: 'test' };
   InterstitialAd = { createForAdRequest: function() { return { load: function() {}, addAdEventListener: function() { return function() {}; }, show: function() {} }; } };
   AdEventType = { LOADED: 'loaded', ERROR: 'error' };
 }
 
-exports.AD_IDS = {
+export const AD_IDS = {
   APP_ID: 'ca-app-pub-4903263409458961~2391607033',
   BANNER: 'ca-app-pub-4903263409458961/6771307929',
   INTERSTITIAL: 'ca-app-pub-4903263409458961/6119092882',
@@ -27,22 +28,20 @@ exports.AD_IDS = {
   INTERSTITIAL_TEST: TestIds.INTERSTITIAL,
 };
 
-const IS_DEV = typeof __DEV__ !== 'undefined' ? __DEV__ : false;
-exports.IS_DEV = IS_DEV;
-exports.BANNER_ID = IS_DEV ? exports.AD_IDS.BANNER_TEST : exports.AD_IDS.BANNER;
-exports.INTERSTITIAL_ID = IS_DEV ? exports.AD_IDS.INTERSTITIAL_TEST : exports.AD_IDS.INTERSTITIAL;
+export const IS_DEV = typeof __DEV__ !== 'undefined' ? __DEV__ : false;
+export const BANNER_ID = IS_DEV ? AD_IDS.BANNER_TEST : AD_IDS.BANNER;
+export const INTERSTITIAL_ID = IS_DEV ? AD_IDS.INTERSTITIAL_TEST : AD_IDS.INTERSTITIAL;
 
-exports.AdBanner = function() {
-  const React = require('react');
+export function AdBanner() {
   return React.createElement(BannerAd, {
-    unitId: exports.BANNER_ID,
+    unitId: BANNER_ID,
     size: BannerAdSize.ANCHORED_ADAPTIVE_BANNER,
     requestOptions: { requestNonPersonalizedAdsOnly: false }
   });
-};
+}
 
-exports.loadInterstitial = function() {
-  const interstitial = InterstitialAd.createForAdRequest(exports.INTERSTITIAL_ID);
+export function loadInterstitial() {
+  const interstitial = InterstitialAd.createForAdRequest(INTERSTITIAL_ID);
   return new Promise(function(resolve) {
     const sub = interstitial.addAdEventListener(AdEventType.LOADED, function() {
       interstitial.show(); sub(); resolve(true);
@@ -50,4 +49,4 @@ exports.loadInterstitial = function() {
     interstitial.addAdEventListener(AdEventType.ERROR, function() { sub(); resolve(false); });
     interstitial.load();
   });
-};
+}
