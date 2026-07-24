@@ -4,6 +4,7 @@ import {
   StyleSheet, Alert, Linking, ActivityIndicator
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { AdBanner } from '../lib/admob';
 
 const SUPA_URL = 'https://tolzqxflecqbjdefohom.supabase.co';
 const SUPA_KEY = 'sb_publishable_aDlGZIIVARlRrtmednmZug_LffD21aU';
@@ -151,6 +152,7 @@ export default function MemberScreen() {
           Pago seguro vía PayPal. Cancela cuando quieras.
         </Text>
       </View>
+      <View style={{padding: 16}}><AdBanner /></View>
     </ScrollView>
   );
 }
