@@ -4,6 +4,7 @@ import {
   Linking, Image, ActivityIndicator, Dimensions, RefreshControl
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { AdBanner } from '../lib/admob';
 
 const { width } = Dimensions.get('window');
 
@@ -132,6 +133,8 @@ export default function HomeScreen({ navigation }) {
           <Text style={styles.planDesc}>Acceso completo + stems</Text>
         </TouchableOpacity>
       </View>
+
+      <View style={{padding: 16, paddingBottom: 4}}><AdBanner /></View>
 
       {/* FOOTER */}
       <View style={styles.footer}>
