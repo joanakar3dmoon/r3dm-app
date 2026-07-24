@@ -1,5 +1,22 @@
-// AdMob para r3dm community usando react-native-google-mobile-ads
-import { BannerAd, BannerAdSize, TestIds, InterstitialAd, AdEventType } from 'react-native-google-mobile-ads';
+// AdMob para r3dm community
+let BannerAd, BannerAdSize, TestIds, InterstitialAd, AdEventType;
+
+try {
+  const mod = require('react-native-google-mobile-ads');
+  BannerAd = mod.BannerAd;
+  BannerAdSize = mod.BannerAdSize;
+  TestIds = mod.TestIds;
+  InterstitialAd = mod.InterstitialAd;
+  AdEventType = mod.AdEventType;
+} catch (e) {
+  // Native module not available - create mock
+  BannerAd = () => null;
+  BannerAdSize = { ANCHORED_ADAPTIVE_BANNER: 'ANCHORED_ADAPTIVE_BANNER' };
+  TestIds = { BANNER: 'test', INTERSTITIAL: 'test' };
+  InterstitialAd = { createForAdRequest: () => ({ load: () => {}, addAdEventListener: () => () => {}, show: () => {} }) };
+  AdEventType = { LOADED: 'loaded', ERROR: 'error' };
+}
+
 import { Platform } from 'react-native';
 
 export const AD_IDS = {
