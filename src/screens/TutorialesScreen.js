@@ -4,6 +4,7 @@ import {
   StyleSheet, ActivityIndicator, Alert
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { AdBanner } from '../lib/admob';
 
 // API key — split para evitar detección de secretos en CI
 const _GK = ['gsk_EHtLPDzHuJPBzQJL6EuY', 'WGdyb3FYFddOUC5H6PIdP3wThQlbPRwx'];
@@ -106,7 +107,8 @@ Responde en JSON con este formato exacto:
               <Text style={[styles.chipText, daw === d && styles.chipTextActive]}>{d}</Text>
             </TouchableOpacity>
           ))}
-        </ScrollView>
+          <View style={{padding: 16}}><AdBanner /></View>
+    </ScrollView>
 
         <Text style={styles.label}>Nivel</Text>
         <View style={styles.levelRow}>
@@ -167,6 +169,7 @@ Responde en JSON con este formato exacto:
           ))}
         </View>
       )}
+      <View style={{padding: 16}}><AdBanner /></View>
     </ScrollView>
   );
 }
